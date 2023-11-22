@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+ Mój blog
+{% endblock %}
+{% block pliki_css %}
+    <link rel="stylesheet" href="{% static "blog/index.css" %}">
+{% endblock  %}
+
+{% block content %}
+    <header id="glowna-nawigacja">
+        <h1><a href="">Mój blog</a></h1>
+        <nav>
+            <a href="">Wszystkie posty</a>
+        </nav>
+    </header>
+
+    <section id="przywitanie">
+        <header>
+            <img src="{% static "blog/images/profilowe.jpg" %}" alt="Ja - autor bloga"/>
+            <h2>Blog Piotrusia</h1>
+        </header>
+        <p>Siema jetem Piotruś ale pewnie to już wiecie</p>
+    </section>
+
+    <section id="najnowsze-posty">
+        <h2> Ostatnie przemyślenia</h2>
+
+        <ul>
+            <li>
+                <article class="post">
+                    <a href="">
+                        <img src="{% static "blog/images/mountains.jpg" %}" alt="Górska wspinaczka"/>
+                        <div class="">
+                            <h3>Górska wspinaczka</h3>
+                            <p>Nie ma to jak widoki pośród gór!</p>
+                        </div>
+                    </a>
+                </article>
+            </li>
+        </ul>
+    </section>
+
+    <section id="o_nas">
+        <h2>Czym się zajmuję</h2>
+        <p>Nie umiem wymyśleć lorem ipsum a w generatorze nie chce mi się go wpisywać więc będzie taki tekst</p>
+        <p>Inny paragraf ogólnie tu też powinien być inny tekst. Może chce ktoś odkupić ode mnie peżota? Chciałbym już zmienić auto</p>
+    </section>
+{% endblock  %}
