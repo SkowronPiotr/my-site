@@ -6,17 +6,11 @@
  Mój blog
 {% endblock %}
 {% block pliki_css %}
+    <link rel="stylesheet" href="{% static "blog/post.css" %}">
     <link rel="stylesheet" href="{% static "blog/index.css" %}">
 {% endblock  %}
 
 {% block content %}
-    <header id="glowna-nawigacja">
-        <h1><a href="">Mój blog</a></h1>
-        <nav>
-            <a href="">Wszystkie posty</a>
-        </nav>
-    </header>
-
     <section id="przywitanie">
         <header>
             <img src="{% static "blog/images/profilowe.jpg" %}" alt="Ja - autor bloga"/>
@@ -29,17 +23,10 @@
         <h2> Ostatnie przemyślenia</h2>
 
         <ul>
-            <li>
-                <article class="post">
-                    <a href="">
-                        <img src="{% static "blog/images/mountains.jpg" %}" alt="Górska wspinaczka"/>
-                        <div class="">
-                            <h3>Górska wspinaczka</h3>
-                            <p>Nie ma to jak widoki pośród gór!</p>
-                        </div>
-                    </a>
-                </article>
-            </li>
+            {% comment %} najnowsze_posty to zmienna zadeklarowana w funkcji {% endcomment %}
+            {% for post in najnowsze_posty %}
+            {% include "blog/includes/post.html" %}
+            {% endfor %}
         </ul>
     </section>
 

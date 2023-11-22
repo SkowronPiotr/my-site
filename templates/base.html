@@ -11,6 +11,13 @@
     {% block pliki_css %}{% endblock  %}
 </head>
 <body>
+    <header id="glowna-nawigacja">
+        <h1><a href="{% url "strona-glowna" %}">Mój blog</a></h1>
+        <nav>
+            <a href="{% url "strona-postow" %}">Wszystkie posty</a>
+        </nav>
+    </header>
+
     {% block content %}
     
     {% endblock  %}    

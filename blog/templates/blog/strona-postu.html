@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+    Tytuł odpowiedniego postu
+{% endblock %}
+{% block pliki_css %}
+    <link rel="stylesheet" href="{% static "blog/strona-postu.css" %}">
+{% endblock  %}
+
+{% block content %}
+ <section id="podsumowanie">
+    <h2>Tytuł postu</h2>
+    <article>
+        <img src="{% static "blog/images/mountains.jpg" %}" alt="Tytuł postu">
+        <address></address>
+        <div>
+            Ostatnio zaaktualizowane <time>xxx</time>
+        </div>
+    </article>
+ </section>
+
+ <main>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum magnam dignissimos neque consequatur sit, odio reprehenderit totam expedita ad ipsa laborum nesciunt deleniti nihil tempore velit iure excepturi. Aperiam, explicabo.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum magnam dignissimos neque consequatur sit, odio reprehenderit totam expedita ad ipsa laborum nesciunt deleniti nihil tempore velit iure excepturi. Aperiam, explicabo.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum magnam dignissimos neque consequatur sit, odio reprehenderit totam expedita ad ipsa laborum nesciunt deleniti nihil tempore velit iure excepturi. Aperiam, explicabo.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum magnam dignissimos neque consequatur sit, odio reprehenderit totam expedita ad ipsa laborum nesciunt deleniti nihil tempore velit iure excepturi. Aperiam, explicabo.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum magnam dignissimos neque consequatur sit, odio reprehenderit totam expedita ad ipsa laborum nesciunt deleniti nihil tempore velit iure excepturi. Aperiam, explicabo.</p>
+ </main>
+{% endblock %}
