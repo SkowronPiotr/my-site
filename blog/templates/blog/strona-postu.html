@@ -3,7 +3,7 @@
 
 
 {% block title %}
-    Tytuł odpowiedniego postu
+    {{ zindentyfikowany_post.tytul}}
 {% endblock %}
 {% block pliki_css %}
     <link rel="stylesheet" href="{% static "blog/strona-postu.css" %}">
@@ -11,21 +11,23 @@
 
 {% block content %}
  <section id="podsumowanie">
-    <h2>Tytuł postu</h2>
+    <h2>{{ zindentyfikowany_post.tytul}}</h2>
+    <div>
+        {% for tag in tagi_postu %} 
+            <span class="tag">{{tag.hasztag}}</span>
+        {% endfor %}
+    </div>
+
     <article>
-        <img src="{% static "blog/images/mountains.jpg" %}" alt="Tytuł postu">
-        <address></address>
+        <img src="{% static "blog/images/"|add:zindentyfikowany_post.nazwa_obrazka %}" alt="Tytuł postu">
+        <address>By <a href="mailto:{{ post.autor.email}}">{{ zindentyfikowany_post.autor }}</a></address>
         <div>
-            Ostatnio zaaktualizowane <time>xxx</time>
+            Ostatnio zaaktualizowane <time>{{ zindentyfikowany_post.data|date:"d M Y" }}</time>
         </div>
     </article>
  </section>
 
  <main>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum magnam dignissimos neque consequatur sit, odio reprehenderit totam expedita ad ipsa laborum nesciunt deleniti nihil tempore velit iure excepturi. Aperiam, explicabo.</p>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum magnam dignissimos neque consequatur sit, odio reprehenderit totam expedita ad ipsa laborum nesciunt deleniti nihil tempore velit iure excepturi. Aperiam, explicabo.</p>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum magnam dignissimos neque consequatur sit, odio reprehenderit totam expedita ad ipsa laborum nesciunt deleniti nihil tempore velit iure excepturi. Aperiam, explicabo.</p>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum magnam dignissimos neque consequatur sit, odio reprehenderit totam expedita ad ipsa laborum nesciunt deleniti nihil tempore velit iure excepturi. Aperiam, explicabo.</p>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum magnam dignissimos neque consequatur sit, odio reprehenderit totam expedita ad ipsa laborum nesciunt deleniti nihil tempore velit iure excepturi. Aperiam, explicabo.</p>
+    {{ zindentyfikowany_post.tresc|linebreaks }}
  </main>
 {% endblock %}

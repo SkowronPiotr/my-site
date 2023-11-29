@@ -14,13 +14,9 @@
     <h2>Moje wszystkie posty</h2>
 
     <ul>
-        {% include "blog/includes/post.html" %}
-        {% include "blog/includes/post.html" %}
-        {% include "blog/includes/post.html" %}
-        {% include "blog/includes/post.html" %}
-        {% include "blog/includes/post.html" %}
-        {% include "blog/includes/post.html" %}
-        {% include "blog/includes/post.html" %}
+        {% for post in wszystkie_posty %}
+            {% include "blog/includes/post.html" %}
+        {% endfor %}
     </ul>
 
 </section>
