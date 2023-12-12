@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Moje zapisane posty
+{% endblock  %}
+
+{% block pliki_css %}
+    <link rel="stylesheet" href="{% static "blog/zapisane-posty.css" %}">
+{% endblock  %}
+
+{% block content %}
+    <section id="zapisane-posty">
+        {% if not ma_posty %}
+            <p>Brak zapisanych postów</p>
+        {% endif %}
+        <ul>
+            {% for post in posty %}
+                <li><a href="{% url "strona-postu" post.slug %}">{{ post.tytul }}</a></li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock  %}

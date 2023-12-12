@@ -3,31 +3,80 @@
 
 
 {% block title %}
-    {{ zindentyfikowany_post.tytul}}
+    {{ post.tytul}}
 {% endblock %}
 {% block pliki_css %}
     <link rel="stylesheet" href="{% static "blog/strona-postu.css" %}">
 {% endblock  %}
 
 {% block content %}
+
+{% if formularz_komentarza.errors %}
+ <div id="alert">
+    <h2>Dodanie komentarza nie powiodło się</h2>
+    <p>Upewnij się że wszystkie pola zostały wypełnione poprawnie</p>
+    <a href="#formularz-detail">Popraw</a>
+ </div>
+{% endif %}
+
  <section id="podsumowanie">
-    <h2>{{ zindentyfikowany_post.tytul}}</h2>
+    <h2>{{ post.tytul}}</h2>
+    <p>Tagi:</p>
     <div>
         {% for tag in tagi_postu %} 
             <span class="tag">{{tag.hasztag}}</span>
         {% endfor %}
     </div>
-
+    <div id="do-przeczytania">
+        <form action="{% url "do-przeczytania" %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="post_id" value="{{ post.id }}">
+            <button>
+                {% if zapisane_na_pozniej %}
+                    Usuń z listy 
+                {% else %}
+                    Do przeczytania
+                {% endif %}
+            </button>
+        </form>
+    </div>
     <article>
-        <img src="{% static "blog/images/"|add:zindentyfikowany_post.nazwa_obrazka %}" alt="Tytuł postu">
-        <address>By <a href="mailto:{{ post.autor.email}}">{{ zindentyfikowany_post.autor }}</a></address>
+        <img src="{{ post.obrazek.url }}" alt="{{ post.tytul }}"/>
+        <address>By <a href="mailto:{{ post.autor.email}}">{{ post.autor }}</a></address>
         <div>
-            Ostatnio zaaktualizowane <time>{{ zindentyfikowany_post.data|date:"d M Y" }}</time>
+            Ostatnio zaaktualizowane <time>{{ post.data|date:"d M Y" }}</time>
         </div>
     </article>
  </section>
 
+
  <main>
-    {{ zindentyfikowany_post.tresc|linebreaks }}
+    {{ post.tresc|linebreaks }}
  </main>
+
+<section id="komentarze">
+    <ul>
+        {% for komentarz in komentarze %}
+            <li>
+                <h2>{{ komentarz.nazwa_uzytkownika }}</h2>
+                <p>{{ komentarz.tekst|linebreaks }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
+
+ <section id="formularz-detail">
+    <h2>Skomentuj</h2>
+    <form action="{% url "strona-postu" post.slug %}" method="POST">
+        {% csrf_token %}
+        {% for pole_formularza in formularz_komentarza %}
+            <div class="formularz-komentarza {% if pole_formularza.errors %}blad{% endif %} ">
+                {{ pole_formularza.label_tag }}
+                {{ pole_formularza }}
+                {{ pole_formularza.errors }}
+            </div>
+        {% endfor %}
+        <button>Zatwierdź</button>
+    </form>
+</section>
 {% endblock %}

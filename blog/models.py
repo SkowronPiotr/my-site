@@ -31,7 +31,8 @@ class Post(models.Model):
     tytul = models.CharField(max_length=150)
     zawartosc = models.CharField(max_length=200)
     tresc = models.TextField(validators=[MinLengthValidator(10)])
-    nazwa_obrazka = models.CharField(max_length=100)
+    obrazek = models.ImageField(upload_to="posty", null=True)
+    # nazwa_obrazka = models.CharField(max_length=100)
     data = models.DateField(auto_now=True)
     slug = models.SlugField(unique=True, db_index=True)
     hasztagi = models.ManyToManyField(Tag, null=True)
@@ -40,3 +41,14 @@ class Post(models.Model):
 
     class Meta:
         verbose_name_plural = "Posty"
+
+    def __str__(self):
+        return self.tytul
+
+
+class Komentarz(models.Model):
+    nazwa_uzytkownika = models.CharField(max_length=120)
+    mail_uzytkownika = models.EmailField()
+    tekst = models.TextField(max_length=400)
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name="komentarze")

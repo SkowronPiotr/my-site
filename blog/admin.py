@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Tag, Autor, Post
+from .models import Tag, Autor, Post, Komentarz
 
+# piotr
 # haslo123
 
 
@@ -10,6 +11,11 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("tytul",)}
 
 
+class KomentarzAdmin(admin.ModelAdmin):
+    list_display = ("nazwa_uzytkownika", "post")
+
+
 admin.site.register(Tag)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Autor)
+admin.site.register(Komentarz, KomentarzAdmin)
