@@ -23,4 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # blog - nazwa aplikacji // http://localhost:8000/ --> zaprowadzi nas do bloga
     path("", include("blog.urls")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
+#     + static(settings.STATIC_URL, documentt_root=settings.STATIC_ROOT)

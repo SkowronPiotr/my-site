@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Tag, Autor, Post, Komentarz
 
-# piotr
+# piotr djangoblog
 # haslo123
 
 
